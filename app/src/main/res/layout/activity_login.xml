@@ -1,0 +1,41 @@
+<LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/luser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter email id"
+            android:paddingTop="30dp"
+            android:textSize="20dp"/>
+
+        <EditText
+            android:id="@+id/lpass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter password"
+            android:paddingTop="30dp"
+            android:textSize="20dp"/>
+
+        <Button android:theme="@style/AppTheme.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:textSize="20dp"
+            android:layout_marginTop="30dp"
+            android:id="@+id/login"/>
+        <TextView
+            android:id="@+id/lerror_id"
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="error : "/>
+
+    </LinearLayout>
+</LinearLayout>

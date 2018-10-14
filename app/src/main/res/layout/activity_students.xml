@@ -1,0 +1,88 @@
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView android:theme="@style/AppTheme.Button"
+        android:id="@+id/textview_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Register students"
+        android:textAlignment="center"
+        android:textSize="35dp"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:gravity="center">
+        <EditText
+            android:id="@+id/sname_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:hint="Enter Name"/>
+        <EditText
+            android:id="@+id/sroll_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:hint="Enter Roll no."/>
+        <EditText
+            android:id="@+id/sphone_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:hint="Enter Phone no."/>
+        <EditText
+            android:id="@+id/semail_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:hint="Enter Email-ID"/>
+        <EditText
+            android:id="@+id/sdob_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:hint="Enter DOB"/>
+
+        <EditText
+            android:id="@+id/sadress_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:hint="Enter Address"/>
+        <EditText
+            android:id="@+id/scourse_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:hint="Enter Course"/>
+    </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+               android:gravity="center">
+
+           <Button android:theme="@style/AppTheme.Button"
+            android:id="@+id/AddStudents_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ADD"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_margin="20dp"/>
+                <TextView
+                    android:id="@+id/error_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="e"/>
+
+
+    </LinearLayout>
+</LinearLayout>
