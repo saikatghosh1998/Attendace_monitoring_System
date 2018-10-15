@@ -1,5 +1,7 @@
 package com.example.saika.attendace_monitoring_system;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,11 +28,14 @@ public class login extends AppCompatActivity {
 EditText userid,password;
 Button login;
 static TextView lerrorview;
+public static SharedPreferences sharedPreferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         userid=(EditText)findViewById(R.id.luser);
         password=(EditText)findViewById(R.id.lpass);
         login=(Button)findViewById(R.id.login);
@@ -47,28 +52,29 @@ static TextView lerrorview;
         });
 
     }
-public class authenticate{
-        String a,b;
-        public void set(String x,String y){
-            a=x;
-            b=y;
-
-        }
-    }
 
 
-    static class LoginTask extends AsyncTask<String, Void, String[]> {
+
+    class LoginTask extends AsyncTask<String, Void, Integer> {
 
         @Override
-        protected String[] doInBackground(String... params) {
+        protected Integer doInBackground(String... params) {
 
+          //SharedPreferences sharedPreferences;
             String RES=null;
             String result=null;
             String email=null;
             String pass=null;
             String id=null;
+            int Flag=0;
             String Email=params[0];
             String password=params[1];
+            //String Sname=null;
+            //String semail=null;
+            //String sid=null;
+
+
+            sharedPreferences = getSharedPreferences("MyPREFERENCES",MODE_PRIVATE);
             try
             {
                 HttpClient httpClient=new DefaultHttpClient();
@@ -91,10 +97,20 @@ public class authenticate{
                         email = x.getString("email");
                         pass = x.getString("password");
                         id=x.getString("id");
-                        RES += "Email : " + email + "\n" + "password : " + pass + "\n";
+                       // RES += "Email : " + email + "\n" + "password : " + pass + "\n";
                        // RES = new String[]{"Logged in succesfully"};
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
 
-
+                        if(Email.equals(email)&& password.equals(pass)){
+                            Flag=1;
+                            //saving in shared preferences
+                            editor.putString("id", id);
+                           editor.putString("email", email);
+                           // editor.putString(sid, e);
+                            editor.commit();
+                        }else{
+                            Flag=0;
+                        }
 
                 }
             }
@@ -103,15 +119,25 @@ public class authenticate{
                 RES=e.toString();
             }
             //return RES;
-           return new String[] { email, pass ,id};
+            return Flag;
+           //return new String[] { email, pass ,id};
         }
 
         @Override
-        protected void onPostExecute(String[] s)
+        protected void onPostExecute(Integer s)
         {
             super.onPostExecute(s);
-            //progressDialog.dismiss();
-            lerrorview.setText(s[0]+"\n"+s[1]+"\n"+s[2]);
+
+
+        if(s==1){
+            lerrorview.setText("success");
+
+          Intent intent=new Intent(login.this,mark.class);
+          startActivity(intent);
+        }else{
+            lerrorview.setText("failure");
+        }
+            //lerrorview.setText(s[0]+"\n"+s[1]+"\n"+s[2]);
 
         }
     }
