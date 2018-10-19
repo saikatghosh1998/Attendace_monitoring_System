@@ -25,6 +25,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class Students extends AppCompatActivity {
+
 EditText sname,roll,sphone,email,dob,adress,course;
 Button  AddStudent;
     ProgressDialog progressDialog;
@@ -34,15 +35,15 @@ static TextView errorview;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_students);
-        sname=(EditText)findViewById(R.id.sname_id);
-        roll=(EditText)findViewById(R.id.sroll_id);
-       sphone=(EditText)findViewById(R.id.sphone_id);
-        email=(EditText)findViewById(R.id.semail_id);
-        dob=(EditText)findViewById(R.id.sdob_id);
-        adress=(EditText)findViewById(R.id.sadress_id);
-        course=(EditText)findViewById(R.id.scourse_id);
-        AddStudent=(Button)findViewById(R.id.AddStudents_id);
-        errorview=(TextView)findViewById(R.id.error_id);
+        sname= findViewById(R.id.sname_id);
+        roll= findViewById(R.id.sroll_id);
+       sphone= findViewById(R.id.sphone_id);
+        email= findViewById(R.id.semail_id);
+        dob= findViewById(R.id.sdob_id);
+        adress= findViewById(R.id.sadress_id);
+        course= findViewById(R.id.scourse_id);
+        AddStudent= findViewById(R.id.AddStudents_id);
+        errorview= findViewById(R.id.error_id);
         AddStudent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

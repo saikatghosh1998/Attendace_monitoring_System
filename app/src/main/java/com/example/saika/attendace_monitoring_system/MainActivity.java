@@ -7,14 +7,14 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-Button teachers,students;
+Button teachers,students,details;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        teachers=(Button)findViewById(R.id.Teachers_id);
-        students=(Button)findViewById(R.id.students_id);
-
+        teachers= findViewById(R.id.Teachers_id);
+        students= findViewById(R.id.students_id);
+        details= findViewById(R.id.studentsDetails_id);
 
         teachers.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -27,6 +27,13 @@ Button teachers,students;
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(MainActivity.this,Students.class);
+                startActivity(intent);
+            }
+        });
+        details.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this,student_details.class);
                 startActivity(intent);
             }
         });

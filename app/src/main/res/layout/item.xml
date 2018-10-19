@@ -1,0 +1,38 @@
+<android.support.v7.widget.CardView android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:background="@color/colorAccent"
+    android:elevation="5dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/imview_id"
+            android:layout_width="80dp"
+            android:layout_height="96dp"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#FF000000"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/name_id"
+            android:layout_marginLeft="6dp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@id/imview_id"
+            android:textSize="24sp"
+            android:text="Name"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/roll_id"
+            android:layout_below="@id/name_id"
+            android:layout_toRightOf="@id/imview_id"
+            android:textSize="16dp"
+            android:layout_marginLeft="10dp"
+            android:text="Roll_no"/>
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
