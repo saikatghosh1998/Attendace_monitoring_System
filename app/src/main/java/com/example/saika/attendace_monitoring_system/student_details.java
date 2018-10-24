@@ -1,10 +1,15 @@
 package com.example.saika.attendace_monitoring_system;
 
+import android.content.ClipData;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -22,6 +27,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.saika.attendace_monitoring_system.MainActivity.adrress;
+
 public class student_details extends AppCompatActivity {
     static TextView tv1;
     static ListView lv1;
@@ -32,6 +39,7 @@ public class student_details extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_details);
         lv1= findViewById(R.id.lv_id);
+
         new StudentDetails().execute();
 
     }
@@ -50,25 +58,10 @@ public class student_details extends AppCompatActivity {
 
             try {
                 HttpClient httpClient = new DefaultHttpClient();
-                HttpPost httpPost = new HttpPost("http://192.168.0.103:7099/fetch_students.php");
-
-
+                HttpPost httpPost = new HttpPost(adrress+"/fetch_students.php");
                 HttpResponse httpResponse = httpClient.execute(httpPost);
                 HttpEntity httpEntity = httpResponse.getEntity();
                 result = EntityUtils.toString(httpEntity);
-
-             /*JSONArray jsonArray = new JSONArray(result);
-
-                for (int i = 0; i < jsonArray.length(); i++) {
-
-                   JSONObject x=jsonArray.getJSONObject(i);
-                   String name=x.getString("name");
-                   String phone= x.getString("phone");
-                   String email=x.getString("email");
-                    RES+= "Name : "+name+"\n"+"Phone : "+phone+"\n"+"Email : "+email+"\n\n";
-                   // RES+=name;
-                }
-                */
 
             } catch (Exception e) {
                 result = e.toString();
@@ -79,8 +72,7 @@ public class student_details extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            //progressDialog.dismiss();
-            //tv1.setText(s);
+
             String result = s.toString();
 
             JSONArray jsonArray = null;
@@ -91,18 +83,21 @@ public class student_details extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            String[] a=null;
-            String[] b=null;
-            List< String > names = new ArrayList< String >();
+            //String[] a=null;
+           // String[] b=null;
+            final List< String > names = new ArrayList< String >();
             List< String > roll = new ArrayList< String >();
+            final List<String>id=new ArrayList<>();
+
             for (int i = 0; i < jsonArray.length(); i++) {
 
                 try {
                     JSONObject   x = jsonArray.getJSONObject(i);
 
+                    String s_id = x.getString("id");
                     String name = x.getString("name");
-                    //String phone = x.getString("phone");
                     String roll_no = x.getString("roll");
+                    id.add(s_id);
                     names.add(name);
                     roll.add(roll_no);
 
@@ -111,6 +106,17 @@ public class student_details extends AppCompatActivity {
                 }
                 simpleAdapter=new SimpleAdapter(student_details.this,names,roll);
                 lv1.setAdapter(simpleAdapter);
+                lv1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        String a= names.get(i);
+                        String ids=id.get(i);
+                       // Toast.makeText(student_details.this,a,Toast.LENGTH_LONG).show();
+                        Intent intent=new Intent(student_details.this,details.class);
+                        intent.putExtra("item",ids);
+                        startActivity(intent);
+                    }
+                });
             }
 
         }

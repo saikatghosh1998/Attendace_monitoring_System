@@ -25,7 +25,13 @@
         <activity android:name=".Students" />
         <activity android:name=".login" />
         <activity android:name=".mark" />
-        <activity android:name=".student_details"></activity>
+        <activity android:name=".student_details" />
+        <activity android:name=".student_attendance" />
+        <activity android:name=".attendance" />
+        <activity android:name=".admin" />
+        <activity android:name=".submit_attendance" />
+        <activity android:name=".details" />
+        <activity android:name=".time_out"></activity>
     </application>
 
 </manifest>

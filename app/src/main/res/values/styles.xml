@@ -6,9 +6,15 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-
-
+        <item name="android:textColorHint">@color/colorAccent</item>
     </style>
+
+    <style name="Theme.App.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorControlNormal">#e11111</item>
+        <item name="colorControlActivated">#1e38fa</item>
+        <item name="colorControlHighlight">#6be111</item>
+    </style>
+
     <style name="AppTheme.Button" parent="Widget.AppCompat.Button.Colored">
         <item name="colorButtonNormal">@color/color1</item>
         <item name="android:textColor">@color/White</item>

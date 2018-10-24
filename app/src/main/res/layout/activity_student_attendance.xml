@@ -1,0 +1,25 @@
+<LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:weightSum="2"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <Button android:theme="@style/AppTheme.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mark Attendance"
+        android:textSize="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        android:id="@+id/Attendance"
+        />
+
+    <Button android:theme="@style/AppTheme.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Details"
+        android:textSize="20dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:id="@+id/Details"/>
+</LinearLayout>

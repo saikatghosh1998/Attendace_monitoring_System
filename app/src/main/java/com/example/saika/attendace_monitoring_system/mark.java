@@ -29,6 +29,7 @@ public class mark extends AppCompatActivity  implements ZXingScannerView.ResultH
     private static final int REQUEST_CAMERA=1;
     private ZXingScannerView ScannerView;
 
+
     Button btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,14 +138,36 @@ public class mark extends AppCompatActivity  implements ZXingScannerView.ResultH
                 .show();
     }
     @Override
-    public void handleResult(Result result) {
+    public void handleResult(final Result result) {
+        sharedPreferences = getSharedPreferences("MyPREFERENCES",MODE_PRIVATE);
+        //sharedPreferences = getSharedPreferences("times",MODE_PRIVATE);
         final String scanResult=result.getText();
+        final String id=sharedPreferences.getString("id",null);
+        final String email=sharedPreferences.getString("email",null);
+        final int timev=sharedPreferences.getInt("time",0);
+
+
         AlertDialog.Builder builder=new AlertDialog.Builder(this);
         builder.setTitle("Scam Result");
         builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+               // submit_class submit_class=new submit_class(timev,scanResult,id,email);
                 ScannerView.resumeCameraPreview(mark.this);
+                if(timev==1) {
+                    Intent intent = new Intent(mark.this, submit_attendance.class);
+                    //intent.putExtra("timev",timev);
+                    intent.putExtra("scanResult", scanResult);
+                    intent.putExtra("id", id);
+                    intent.putExtra("email", email);
+                    startActivity(intent);
+                }else{
+                    Intent intent=new Intent(mark.this,time_out.class);
+                    intent.putExtra("scanResult", scanResult);
+                    intent.putExtra("id", id);
+                    intent.putExtra("email", email);
+                    startActivity(intent);
+                }
             }
         });
         builder.setNeutralButton("Visit", new DialogInterface.OnClickListener() {
@@ -154,7 +177,7 @@ public class mark extends AppCompatActivity  implements ZXingScannerView.ResultH
                 startActivity(intent);
             }
         });
-        builder.setMessage(scanResult);
+        builder.setMessage(scanResult+" "+" "+id);
         AlertDialog alertDialog=builder.create();
         alertDialog.show();
     }

@@ -24,11 +24,13 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import static com.example.saika.attendace_monitoring_system.MainActivity.adrress;
+
 public class login extends AppCompatActivity {
 EditText userid,password;
 Button login;
 static TextView lerrorview;
-public static SharedPreferences sharedPreferences;
+ SharedPreferences sharedPreferences;
 
 
     @Override
@@ -36,10 +38,10 @@ public static SharedPreferences sharedPreferences;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        userid=(EditText)findViewById(R.id.luser);
-        password=(EditText)findViewById(R.id.lpass);
-        login=(Button)findViewById(R.id.login);
-        lerrorview=(TextView)findViewById(R.id.lerror_id);
+        userid= findViewById(R.id.luser);
+        password= findViewById(R.id.lpass);
+        login= findViewById(R.id.login);
+        lerrorview= findViewById(R.id.lerror_id);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,16 +71,13 @@ public static SharedPreferences sharedPreferences;
             int Flag=0;
             String Email=params[0];
             String password=params[1];
-            //String Sname=null;
-            //String semail=null;
-            //String sid=null;
 
 
             sharedPreferences = getSharedPreferences("MyPREFERENCES",MODE_PRIVATE);
             try
             {
                 HttpClient httpClient=new DefaultHttpClient();
-                HttpPost httpPost=new HttpPost("http://192.168.0.103:7099/newlogin.php");
+                HttpPost httpPost=new HttpPost(adrress+"/newlogin.php");
                 ArrayList<NameValuePair> DataList=new ArrayList<>();
 
                 DataList.add(new BasicNameValuePair("email" , Email));
@@ -132,7 +131,7 @@ public static SharedPreferences sharedPreferences;
         if(s==1){
             lerrorview.setText("success");
 
-          Intent intent=new Intent(login.this,mark.class);
+          Intent intent=new Intent(login.this,student_attendance.class);
           startActivity(intent);
         }else{
             lerrorview.setText("failure");

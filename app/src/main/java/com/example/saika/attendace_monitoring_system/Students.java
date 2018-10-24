@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -24,12 +25,14 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import static com.example.saika.attendace_monitoring_system.MainActivity.adrress;
+
 public class Students extends AppCompatActivity {
 
 EditText sname,roll,sphone,email,dob,adress,course;
 Button  AddStudent;
     ProgressDialog progressDialog;
-//StudentDb SDb;
+
 static TextView errorview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +89,8 @@ static TextView errorview;
             try
             {
                 HttpClient httpClient=new DefaultHttpClient();
-                HttpPost httpPost=new HttpPost("http://192.168.0.103:7099/login1.php");
+                HttpPost httpPost=new HttpPost(adrress+"/login1.php");
+
                 ArrayList<NameValuePair> DataList=new ArrayList<>();
                 DataList.add(new BasicNameValuePair("roll" ,ROLL));
                 DataList.add(new BasicNameValuePair("name" ,NAME));
@@ -126,6 +130,7 @@ static TextView errorview;
             super.onPostExecute(s);
             //progressDialog.dismiss();
             errorview.setText(s);
+          
 
         }
     }

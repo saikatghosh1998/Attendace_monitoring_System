@@ -6,28 +6,28 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
-Button login,student;
-static final String adrress="http://192.168.0.103:7099";
+public class admin extends AppCompatActivity {
+    Button register,details;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        login= findViewById(R.id.Teachers_id);
-        student= findViewById(R.id.student_attendance);
+        setContentView(R.layout.activity_admin);
 
-        login.setOnClickListener(new View.OnClickListener() {
+
+        register= findViewById(R.id.students_id);
+        details= findViewById(R.id.studentsDetails_id);
+
+        register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,admin.class);
+                Intent intent=new Intent(admin.this,Students.class);
                 startActivity(intent);
             }
         });
-
-        student.setOnClickListener(new View.OnClickListener() {
+        details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,login.class);
+                Intent intent=new Intent(admin.this,student_details.class);
                 startActivity(intent);
             }
         });
